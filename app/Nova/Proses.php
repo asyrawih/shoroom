@@ -3,27 +3,27 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class User extends Resource
+class Proses extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\User::class;
+    public static $model = \App\Proses::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'no_unit';
 
     /**
      * The columns that should be searched.
@@ -31,7 +31,7 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email','sn_employee'
+        'id',
     ];
 
     /**
@@ -45,28 +45,32 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make()->maxWidth(50),
+            BelongsTo::make('Employee', 'employee', User::class),
 
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
+            BelongsTo::make('Unit', 'unit', Unit::class),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+            BelongsTo::make('Plant', 'plant', Plant::class),
 
-            Text::make('SN EMPLOYEE')
-                ->rules('required', 'string', 'unique:users,sn_employee'),
+            BelongsTo::make('Customer', 'customer', Customer::class),
 
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
+            Text::make('No Unit', 'no_unit')
+                ->rules('required', 'string'),
 
-            HasMany::make('Proses' , 'proses' , Proses::class)
-        
+            Textarea::make('Lokasi Unit', 'lokasi_unit')
+                ->rules('required', 'string'),
+
+            Text::make('Kota', 'kota')
+                ->rules('required', 'string'),
+
+            Text::make('HOO', 'hoo')
+                ->rules('required', 'string'),
+
+            Text::make('SMU', 'smu')
+                ->rules('required', 'string'),
+
+            Textarea::make('remark')
+                ->rules('string'),
+
         ];
     }
 
@@ -112,5 +116,10 @@ class User extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function singularLabel()
+    {
+        return 'Proses';
     }
 }
