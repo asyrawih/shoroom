@@ -13,14 +13,15 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = collect([
-            ['name' => 'hanan', 'email' => 'hasyrawi@gmail.com'],
-            ['name' => 'tony', 'email' => 'tony@gmail.com'],
+            ['name' => 'hanan', 'email' => 'hasyrawi@gmail.com', 'is_admin' => true],
+            ['name' => 'tony', 'email' => 'tony@gmail.com' , 'is_admin' => true],
         ]);
 
         $admin->each(function ($user) {
             factory(User::class)->create([
                 'name'      => $user['name'],
-                'email'     => $user['email']
+                'email'     => $user['email'],
+                'is_admin'  => $user['is_admin']
             ]);
         });
     }
