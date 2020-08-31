@@ -34,6 +34,17 @@ class Proses extends Resource
         'id',
     ];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+
+        if ($user->is_admin) {
+            return $query;
+        }
+
+        return $query->where('user_id' , $user->id);
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -119,6 +130,11 @@ class Proses extends Resource
     }
 
     public static function singularLabel()
+    {
+        return 'Proses';
+    }
+
+    public static function label()
     {
         return 'Proses';
     }

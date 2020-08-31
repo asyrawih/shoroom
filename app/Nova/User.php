@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
@@ -32,8 +33,20 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email','sn_employee'
+        'id', 'name', 'email', 'sn_employee'
     ];
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+        
+        // Jika user sama dengan admin maka tampilkan semua list user nya
+        if ($user->is_admin) {
+            return $query;
+        }
+        // Ambil Data User Yang sama dengan user yang sedang login sekarang
+        return $query->where('id', $user->id);
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -46,8 +59,6 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make()->maxWidth(50),
-
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
@@ -59,21 +70,27 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             Text::make('SN EMPLOYEE')
-                ->rules('required', 'string', 'unique:users,sn_employee'),
+                ->updateRules('required', 'string', 'unique:users,sn_employee,{{resourceId}}'),
 
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+            
+            Text::make('Phone Number' , 'phone_number')
+                ->rules('required' , 'string'),
 
-            HasMany::make('Proses' , 'proses' , Proses::class),
+            Text::make('Jabatan' , 'jabatan')
+                ->rules('required' , 'string'),
 
-            HasMany::make('Customers' , 'customers' , Customer::class),
+            HasMany::make('Proses', 'proses', Proses::class),
+
+            HasMany::make('Customers', 'customers', Customer::class),
 
             Impersonate::make($this)->withMeta([
-			    'redirect_to' => '/admin/resources/users'
-			]),
-        
+                'redirect_to' => '/admin/resources/users'
+            ]),
+
         ];
     }
 
