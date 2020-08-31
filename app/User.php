@@ -37,6 +37,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     /**
      * @author hanan
      * 
@@ -46,5 +47,22 @@ class User extends Authenticatable
     public function proses(): HasMany
     {
         return $this->hasMany(Proses::class, 'user_id');
+    }
+
+    /**
+     * A Sales Can Have Many User 
+     * @return HasMany
+     */
+    public function customers(): HasMany
+    {
+        return $this->hasMany(Customer::class, 'user_id');
+    }
+
+    /**
+     * @return bool
+     */
+    public function canImpersonate()
+    {
+        return $this->is_admin == 1;
     }
 }

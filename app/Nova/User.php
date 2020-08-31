@@ -3,11 +3,14 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use KABBOUCHI\NovaImpersonate\Impersonate;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
@@ -31,8 +34,21 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email','sn_employee'
+        'id', 'name', 'email', 'sn_employee'
     ];
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+
+        // Jika user sama dengan admin maka tampilkan semua list user nya
+        if ($user->is_admin) {
+            return $query;
+        }
+        // Ambil Data User Yang sama dengan user yang sedang login sekarang
+        return $query->where('id', $user->id);
+    }
+
 
     /**
      * Get the fields displayed by the resource.
@@ -45,8 +61,6 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make()->maxWidth(50),
-
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
@@ -58,15 +72,40 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             Text::make('SN EMPLOYEE')
-                ->rules('required', 'string', 'unique:users,sn_employee'),
+                ->updateRules('required', 'string', 'unique:users,sn_employee,{{resourceId}}'),
 
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            HasMany::make('Proses' , 'proses' , Proses::class)
-        
+            Text::make('Phone Number', 'phone_number')
+                ->rules('required', 'string'),
+
+            Text::make('Jabatan', 'jabatan')
+                ->rules('required', 'string'),
+
+
+            Boolean::make('Is Admin', 'is_admin')->canSee(function ($request) {
+                return $request->user()->is_admin;
+            }),
+
+            Boolean::make('Is Sales', 'is_sales')->canSee(function ($request) {
+                return $request->user()->is_admin;
+            }),
+
+            Boolean::make('Werhouse Men', 'is_warehose')->canSee(function ($request) {
+                return $request->user()->is_admin;
+            }),
+
+            HasMany::make('Proses', 'proses', Proses::class),
+
+            HasMany::make('Customers', 'customers', Customer::class),
+
+            Impersonate::make($this)->withMeta([
+                'redirect_to' => '/admin/resources/users'
+            ]),
+
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -30,8 +31,19 @@ class Customer extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name'
+        'id', 'name', 'city'
     ];
+
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+
+        if (!$user->is_admin) {
+            return $query->where('user_id', $user->id);
+        }
+        return $query;
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -43,6 +55,8 @@ class Customer extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            BelongsTo::make('Sales', 'sales', User::class),
 
             Text::make('SOLD TO PARTY')
                 ->onlyOnForms()

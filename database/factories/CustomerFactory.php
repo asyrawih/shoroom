@@ -3,10 +3,12 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Customer;
+use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Customer::class, function (Faker $faker) {
     return [
+        'user_id'         => fn() => factory(User::class)->create()->id,
         'sold_to_party'   => $faker->unique()->randomNumber(8),
         'ship_to_id'      => $faker->unique()->randomNumber(8),
         'name'            => $faker->firstNameMale,
