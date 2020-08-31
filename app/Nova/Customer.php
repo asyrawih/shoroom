@@ -106,6 +106,8 @@ class Customer extends Resource
                 ->rules('required', 'string'),
 
             HasMany::make('Proses', 'proses', Proses::class),
+
+            HasMany::make('Units', 'units', Unit::class),
         ];
     }
 

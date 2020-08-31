@@ -25,15 +25,7 @@ class Proses extends Model
     {
         return $this->belongsTo(Plant::class, 'plant_id');
     }
-    /**
-     * @author hanan
-     * di miliki oleh unit
-     * @return BelongsTo
-     */
-    public function unit(): BelongsTo
-    {
-        return $this->belongsTo(Unit::class, 'unit_id');
-    }
+
     /**
      * @author hanan
      * di miliki oleh user/employee/karyawan

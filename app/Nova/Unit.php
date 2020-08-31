@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -34,6 +35,12 @@ class Unit extends Resource
         'id', 'sn_unit'
     ];
 
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query ; //@todo unit yang di munculkan harus berdasarkan Customer
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -44,6 +51,8 @@ class Unit extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            BelongsTo::make('Customer' , 'customer' , Customer::class),
 
             Text::make('Serial Unit', 'sn_unit')
                 ->rules('required', 'string', 'unique:units,sn_unit,{{resourceID}}'),

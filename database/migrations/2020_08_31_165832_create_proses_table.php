@@ -18,7 +18,6 @@ class CreateProsesTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('customer_id');
             $table->foreignId('plant_id');
-            $table->foreignId('unit_id');
             $table->string('no_unit');
             $table->text('lokasi_unit');
             $table->string('kota');

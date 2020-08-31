@@ -56,9 +56,7 @@ class Proses extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Employee', 'employee', User::class),
-
-            BelongsTo::make('Unit', 'unit', Unit::class),
+            BelongsTo::make('Sales', 'employee', User::class),
 
             BelongsTo::make('Plant', 'plant', Plant::class),
 

@@ -17,4 +17,9 @@ class Unit extends Model
     {
         return $this->hasMany(Proses::class, 'unit_id');
     }
+    
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
 }

@@ -46,8 +46,16 @@ class Customer extends Model
      * Customer memiliki Sales
      * @return BelongsTo
      */
-    public function sales() : BelongsTo
+    public function sales(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Customer punya Banyak Unit
+     */
+    public function units()
+    {
+        return $this->hasMany(Unit::class , 'customer_id');
     }
 }
