@@ -31,8 +31,19 @@ class Customer extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name'
+        'id', 'name', 'city'
     ];
+
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+
+        if (!$user->is_admin) {
+            return $query->where('user_id', $user->id);
+        }
+        return $query;
+    }
 
     /**
      * Get the fields displayed by the resource.

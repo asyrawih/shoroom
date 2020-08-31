@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use KABBOUCHI\NovaImpersonate\Impersonate;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -39,7 +40,7 @@ class User extends Resource
     public static function indexQuery(NovaRequest $request, $query)
     {
         $user = $request->user();
-        
+
         // Jika user sama dengan admin maka tampilkan semua list user nya
         if ($user->is_admin) {
             return $query;
@@ -47,6 +48,7 @@ class User extends Resource
         // Ambil Data User Yang sama dengan user yang sedang login sekarang
         return $query->where('id', $user->id);
     }
+
 
     /**
      * Get the fields displayed by the resource.
@@ -76,12 +78,25 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
-            
-            Text::make('Phone Number' , 'phone_number')
-                ->rules('required' , 'string'),
 
-            Text::make('Jabatan' , 'jabatan')
-                ->rules('required' , 'string'),
+            Text::make('Phone Number', 'phone_number')
+                ->rules('required', 'string'),
+
+            Text::make('Jabatan', 'jabatan')
+                ->rules('required', 'string'),
+
+
+            Boolean::make('Is Admin', 'is_admin')->canSee(function ($request) {
+                return $request->user()->is_admin;
+            }),
+
+            Boolean::make('Is Sales', 'is_sales')->canSee(function ($request) {
+                return $request->user()->is_admin;
+            }),
+
+            Boolean::make('Werhouse Men', 'is_warehose')->canSee(function ($request) {
+                return $request->user()->is_admin;
+            }),
 
             HasMany::make('Proses', 'proses', Proses::class),
 
