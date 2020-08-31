@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Proses extends Resource
@@ -53,7 +54,22 @@ class Proses extends Resource
             BelongsTo::make('Customer', 'customer', Customer::class),
 
             Text::make('No Unit', 'no_unit')
-                ->rules('required', 'string')
+                ->rules('required', 'string'),
+
+            Textarea::make('Lokasi Unit', 'lokasi_unit')
+                ->rules('required', 'string'),
+
+            Text::make('Kota', 'kota')
+                ->rules('required', 'string'),
+
+            Text::make('HOO', 'hoo')
+                ->rules('required', 'string'),
+
+            Text::make('SMU', 'smu')
+                ->rules('required', 'string'),
+
+            Textarea::make('remark')
+                ->rules('string'),
 
         ];
     }
@@ -100,5 +116,10 @@ class Proses extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function singularLabel()
+    {
+        return 'Proses';
     }
 }
