@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -21,7 +22,7 @@ class Customer extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -29,7 +30,7 @@ class Customer extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'name'
     ];
 
     /**
@@ -89,6 +90,8 @@ class Customer extends Resource
             Text::make('Npwp', 'npwp')
                 ->hideFromIndex()
                 ->rules('required', 'string'),
+
+            HasMany::make('Proses', 'proses', Proses::class),
         ];
     }
 

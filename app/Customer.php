@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
@@ -13,7 +14,7 @@ class Customer extends Model
      * @return string
      * @author Hanan
      */
-    public function getFormatStpAttribute() : string
+    public function getFormatStpAttribute(): string
     {
         return 'STP-' . $this->sold_to_party;
     }
@@ -23,10 +24,19 @@ class Customer extends Model
      * @return string 
      * @author hanan
      */
-    public function getFormatStiAttribute() : string
+    public function getFormatStiAttribute(): string
     {
         return 'STI-' . $this->ship_to_id;
     }
 
-
+    /**
+     * @author hanan
+     * 
+     * Satu customer bisa memiliki banyak proses
+     * @return HasMany
+     */
+    public function proses(): HasMany
+    {
+        return $this->hasMany(Proses::class, 'customer_id');
+    }
 }

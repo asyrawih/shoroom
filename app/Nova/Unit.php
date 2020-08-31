@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -51,7 +52,9 @@ class Unit extends Resource
                 ->rules('required', 'string'),
 
             Textarea::make('Deskripisi', 'desc')
-                ->rules('required', 'string')
+                ->rules('required', 'string'),
+
+            HasMany::make('Proses', 'proses', Proses::class)
         ];
     }
 

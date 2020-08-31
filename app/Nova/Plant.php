@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -51,6 +52,8 @@ class Plant extends Resource
 
             Text::make('Deskripsi', 'desc')
                 ->rules('required', 'string'),
+
+            HasMany::make('Proses', 'proses', Proses::class),
         ];
     }
 
