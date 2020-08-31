@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use KABBOUCHI\NovaImpersonate\Impersonate;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -65,7 +66,13 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            HasMany::make('Proses' , 'proses' , Proses::class)
+            HasMany::make('Proses' , 'proses' , Proses::class),
+
+            HasMany::make('Customers' , 'customers' , Customer::class),
+
+            Impersonate::make($this)->withMeta([
+			    'redirect_to' => '/admin/resources/users'
+			]),
         
         ];
     }

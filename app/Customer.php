@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
@@ -38,5 +39,15 @@ class Customer extends Model
     public function proses(): HasMany
     {
         return $this->hasMany(Proses::class, 'customer_id');
+    }
+
+    /**
+     * @author hanan
+     * Customer memiliki Sales
+     * @return BelongsTo
+     */
+    public function sales() : BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
