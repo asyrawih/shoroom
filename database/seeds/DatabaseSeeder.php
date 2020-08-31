@@ -13,11 +13,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserSeeder::class);
-        
+
         // Cek jika Program Sudah Berada di prioduction jangan run 
         // Seeder nya
         if (env('APP_ENV') == 'local') {
             $this->call(CustomerSeeder::class);
+            $this->call(PlantSeeder::class);
+            $this->call(UnitSeeder::class);
         }
     }
 }
