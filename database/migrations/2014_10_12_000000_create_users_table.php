@@ -24,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->text('remark')->nullable();
             $table->string('is_admin')->default(false);
             $table->string('is_warehose')->default(false);
-            $table->string('is_sales')->default(true);
+            $table->string('is_sales')->default(false);
+            $table->string('is_counter')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

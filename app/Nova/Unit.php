@@ -63,7 +63,8 @@ class Unit extends Resource
             Textarea::make('Deskripisi', 'desc')
                 ->rules('required', 'string'),
 
-            HasMany::make('Proses', 'proses', Proses::class)
+            HasMany::make('Prosess' , 'proses' , Proses::class),
+
         ];
     }
 

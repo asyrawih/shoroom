@@ -9,15 +9,6 @@ class Proses extends Model
 {
     /**
      * @author hanan
-     * di miliki oleh customer
-     * @return BelongsTo
-     */
-    public function customer(): BelongsTo
-    {
-        return $this->belongsTo(Customer::class, 'customer_id');
-    }
-    /**
-     * @author hanan
      * di miliki oleh plant
      * @return BelongsTo
      */
@@ -27,12 +18,13 @@ class Proses extends Model
     }
 
     /**
-     * @author hanan
-     * di miliki oleh user/employee/karyawan
+     * @author Hanan
+     * 
+     * prosess BelongsTo 
      * @return BelongsTo
      */
-    public function employee(): BelongsTo
+    public function unit(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 }

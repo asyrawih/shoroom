@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     {
         $admin = collect([
             ['name' => 'hanan', 'email' => 'hasyrawi@gmail.com', 'is_admin' => true],
-            ['name' => 'tony', 'email' => 'tony@gmail.com' , 'is_admin' => true],
+            ['name' => 'tony', 'email' => 'tony@gmail.com', 'is_admin' => true],
         ]);
 
         $admin->each(function ($user) {
@@ -24,5 +24,7 @@ class UserSeeder extends Seeder
                 'is_admin'  => $user['is_admin']
             ]);
         });
+
+        factory(User::class)->state('counter', rand(2, 3))->create();
     }
 }

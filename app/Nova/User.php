@@ -72,6 +72,7 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             Text::make('SN EMPLOYEE')
+                ->hideFromIndex()
                 ->updateRules('required', 'string', 'unique:users,sn_employee,{{resourceId}}'),
 
             Password::make('Password')
@@ -80,9 +81,11 @@ class User extends Resource
                 ->updateRules('nullable', 'string', 'min:8'),
 
             Text::make('Phone Number', 'phone_number')
+                ->hideFromIndex()
                 ->rules('required', 'string'),
 
             Text::make('Jabatan', 'jabatan')
+                ->hideFromIndex()
                 ->rules('required', 'string'),
 
 
@@ -95,6 +98,10 @@ class User extends Resource
             }),
 
             Boolean::make('Werhouse Men', 'is_warehose')->canSee(function ($request) {
+                return $request->user()->is_admin;
+            }),
+
+            Boolean::make('Is Counter', 'is_counter')->canSee(function ($request) {
                 return $request->user()->is_admin;
             }),
 

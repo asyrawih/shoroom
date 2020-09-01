@@ -39,10 +39,10 @@ class Customer extends Resource
     {
         $user = $request->user();
 
-        if (!$user->is_admin) {
-            return $query->where('user_id', $user->id);
+        if ($user->is_admin or $user->is_counter) {
+            return $query;
         }
-        return $query;
+        return $query->where('user_id', $user->id);
     }
 
     /**
@@ -66,7 +66,7 @@ class Customer extends Resource
                 return $this->format_stp;
             }),
 
-            Text::make('SOLD TO PARTY', function () {
+            Text::make('SHIP TO ID', function () {
                 return $this->format_sti;
             }),
 
@@ -104,8 +104,6 @@ class Customer extends Resource
             Text::make('Npwp', 'npwp')
                 ->hideFromIndex()
                 ->rules('required', 'string'),
-
-            HasMany::make('Proses', 'proses', Proses::class),
 
             HasMany::make('Units', 'units', Unit::class),
         ];
