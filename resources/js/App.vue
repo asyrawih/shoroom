@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
-    <Input-Field v-model="value" @input="listenInput" />
-    <CustomerField v-if="value != '' " />
+    <Input-Field v-model="value" @enter="handle" />
+    <CustomerField v-if="customer.length > 0 " />
   </div>
 </template>
 
@@ -17,12 +17,14 @@ export default {
   data() {
     return {
       value: "",
+      isLoading: false,
+      customer: [],
     };
   },
+
   methods: {
-    listenInput(e) {
-      console.log(e);
-    },
+    handle(e) {},
+    getCustomer(query) {},
   },
 };
 </script>

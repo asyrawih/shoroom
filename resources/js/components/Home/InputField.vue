@@ -7,6 +7,7 @@
         autofocus
         placeholder="Scan barcode di sini"
         @input="updateValue"
+        @keyup.enter="handleEnter"
       />
     </div>
   </div>
@@ -16,7 +17,7 @@
 export default {
   name: "input-field",
   props: {
-    value : String  
+    value: String,
   },
 
   data() {
@@ -29,6 +30,10 @@ export default {
     updateValue(e) {
       this.content = e.target.value;
       this.$emit("input", this.content);
+    },
+
+    handleEnter(e) {
+      this.$emit("enter", e.target.value);
     },
   },
 };

@@ -1926,13 +1926,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      value: ""
+      value: "",
+      isLoading: false,
+      customer: []
     };
   },
   methods: {
-    listenInput: function listenInput(e) {
-      console.log(e);
-    }
+    handle: function handle(e) {},
+    getCustomer: function getCustomer(query) {}
   }
 });
 
@@ -1993,6 +1994,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "input-field",
   props: {
@@ -2007,6 +2009,9 @@ __webpack_require__.r(__webpack_exports__);
     updateValue: function updateValue(e) {
       this.content = e.target.value;
       this.$emit("input", this.content);
+    },
+    handleEnter: function handleEnter(e) {
+      this.$emit("enter", e.target.value);
     }
   }
 });
@@ -19666,7 +19671,7 @@ var render = function() {
     { staticClass: "container mx-auto" },
     [
       _c("Input-Field", {
-        on: { input: _vm.listenInput },
+        on: { enter: _vm.handle },
         model: {
           value: _vm.value,
           callback: function($$v) {
@@ -19676,7 +19681,7 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _vm.value != "" ? _c("CustomerField") : _vm._e()
+      _vm.customer.length > 0 ? _c("CustomerField") : _vm._e()
     ],
     1
   )
@@ -19749,7 +19754,18 @@ var render = function() {
           autofocus: "",
           placeholder: "Scan barcode di sini"
         },
-        on: { input: _vm.updateValue }
+        on: {
+          input: _vm.updateValue,
+          keyup: function($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.handleEnter($event)
+          }
+        }
       })
     ])
   ])
