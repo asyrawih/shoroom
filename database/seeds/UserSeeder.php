@@ -26,6 +26,6 @@ class UserSeeder extends Seeder
         });
 
         factory(User::class)->state('counter', rand(2, 3))->create();
-        factory(User::class)->state('sales', rand(2, 3))->create();
+        factory(User::class)->state('warehouse', rand(2, 3))->create();
     }
 }

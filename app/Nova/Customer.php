@@ -31,7 +31,7 @@ class Customer extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'city'
+        'id', 'name', 'city', 'sold_to_party', 'ship_to_id'
     ];
 
 
@@ -39,7 +39,7 @@ class Customer extends Resource
     {
         $user = $request->user();
 
-        if ($user->is_admin or $user->is_counter) {
+        if ($user->is_admin or $user->is_counter or $user->is_warehose) {
             return $query;
         }
         return $query->where('user_id', $user->id);
@@ -59,26 +59,26 @@ class Customer extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-
             Text::make('NAME')
                 ->rules('required', 'string'),
 
             BelongsTo::make('Sales', 'sales', User::class)
-                ->onlyOnForms()
                 ->searchable(),
+
+
+            Text::make('SHIP TO ID', 'ship_to_id', function () {
+                return $this->format_sti;
+            })
+                ->onlyOnIndex(),
+
+            Text::make('SOLD TO PARY', 'sold_to_party', function () {
+                return $this->format_stp;
+            })
+                ->onlyOnIndex(),
 
             Text::make('SOLD TO PARTY')
                 ->onlyOnForms()
                 ->rules('required', 'string', 'unique:customers,sold_to_party,{{resourceId}}'),
-
-            Text::make('SOLD TO PARTY', function () {
-                return $this->format_stp;
-            }),
-
-            Text::make('SHIP TO ID', function () {
-                return $this->format_sti;
-            }),
 
             Text::make('SHIP TO ID')
                 ->onlyOnForms()
@@ -114,6 +114,8 @@ class Customer extends Resource
 
 
             HasMany::make('Units', 'units', Unit::class),
+
+            HasMany::make('Warehouse', 'warehouses', WareHouse::class),
         ];
     }
 

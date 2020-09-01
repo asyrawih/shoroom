@@ -18,7 +18,7 @@ class WareHousePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->is_admin or $user->is_warehose;
+        return $user->is_admin or $user->is_warehose || $user->is_counter;
     }
 
     /**
@@ -41,7 +41,7 @@ class WareHousePolicy
      */
     public function create(User $user)
     {
-        return $user->is_admin;
+        return $user->is_admin || $user->is_warehose;
     }
 
     /**
@@ -53,7 +53,7 @@ class WareHousePolicy
      */
     public function update(User $user, warehouse $warehouse)
     {
-        return $user->is_admin;
+        return $user->is_admin || $user->is_warehose;
     }
 
     /**

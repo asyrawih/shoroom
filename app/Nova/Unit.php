@@ -53,23 +53,40 @@ class Unit extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-
             BelongsTo::make('Customer', 'customer', Customer::class)
                 ->showCreateRelationButton()
                 ->searchable(),
 
             Text::make('Serial Unit', 'sn_unit')
-                ->rules('required', 'string', 'unique:units,sn_unit,{{resourceID}}'),
+                ->hideWhenUpdating()
+                ->creationRules('required', 'string', 'unique:units,sn_unit,{{resourceID}}'),
 
             Text::make('Model Unit', 'model_unit')
                 ->rules('required', 'string'),
 
-            Textarea::make('Deskripisi', 'desc')
+            Text::make('Deskripisi', 'desc')
                 ->rules('required', 'string'),
 
-            HasMany::make('Prosess', 'proses', Proses::class),
+            Text::make('No Unit', 'no_unit')
+                ->rules('required', 'string'),
 
+            Text::make('Lokasi Unit', 'lokasi_unit')
+                ->hideFromIndex()
+                ->rules('required', 'string'),
+
+            Text::make('Kota', 'kota')
+                ->rules('required', 'string'),
+
+            Text::make('HOO', 'hoo')
+                ->hideFromIndex()
+                ->rules('required', 'string'),
+
+            Text::make('SMU', 'smu')
+                ->rules('required', 'string'),
+
+            Text::make('Remark', 'remark')
+                ->hideFromIndex()
+                ->nullable(),
         ];
     }
 
