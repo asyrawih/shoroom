@@ -44,15 +44,6 @@ class Unit extends Resource
      */
     public static $displayInNavigation = false;
 
-
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        if (!$request->user()->is_admin) {
-            return $query->whereIn('customer_id', $request->user()->customers->pluck('id'));
-        }
-        return $query;
-    }
-
     /**
      * Get the fields displayed by the resource.
      *
