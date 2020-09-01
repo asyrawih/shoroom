@@ -105,8 +105,6 @@ class User extends Resource
                 return $request->user()->is_admin;
             }),
 
-            HasMany::make('Proses', 'proses', Proses::class),
-
             HasMany::make('Customers', 'customers', Customer::class),
 
             Impersonate::make($this)->withMeta([

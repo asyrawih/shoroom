@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -38,7 +39,10 @@ class Unit extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query ; //@todo unit yang di munculkan harus berdasarkan Customer
+       if(!$request->user()->is_admin){
+           return $query->whereIn('customer_id' , $request->user()->customers->pluck('id'));
+       }
+       return $query;
     }
 
     /**
