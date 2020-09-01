@@ -21,10 +21,11 @@ class UserSeeder extends Seeder
             factory(User::class)->create([
                 'name'      => $user['name'],
                 'email'     => $user['email'],
-                'is_admin'  => $user['is_admin']
+                'is_admin'  => $user['is_admin'],
             ]);
         });
 
         factory(User::class)->state('counter', rand(2, 3))->create();
+        factory(User::class)->state('sales', rand(2, 3))->create();
     }
 }

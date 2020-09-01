@@ -45,6 +45,11 @@ class Customer extends Resource
         return $query->where('user_id', $user->id);
     }
 
+    public static function relatableUsers(NovaRequest $request, $query)
+    {
+        return $query->where('is_sales', true);
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

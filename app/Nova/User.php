@@ -165,6 +165,6 @@ class User extends Resource
      */
     public function title()
     {
-        return "$this->name ($this->email)";
+        return "$this->name ($this->jabatan)";
     }
 }
