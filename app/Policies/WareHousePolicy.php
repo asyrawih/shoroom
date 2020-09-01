@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Customer;
 use App\User;
+use App\warehouse;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CustomerPolicy
+class WareHousePolicy
 {
     use HandlesAuthorization;
 
@@ -18,22 +18,19 @@ class CustomerPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->is_admin || $user->is_sales || $user->is_counter || $user->is_warehose;
+        return $user->is_admin or $user->is_warehose;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Customer  $customer
+     * @param  \App\warehouse  $warehouse
      * @return mixed
      */
-    public function view(User $user, Customer $customer)
+    public function view(User $user, warehouse $warehouse)
     {
-        return $user->id === $customer->user_id
-            or $user->is_admin
-            or $user->is_counter
-            or $user->is_warehose;
+        return $user->is_admin or $user->is_warehose;
     }
 
     /**
@@ -51,10 +48,10 @@ class CustomerPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Customer  $customer
+     * @param  \App\warehouse  $warehouse
      * @return mixed
      */
-    public function update(User $user, Customer $customer)
+    public function update(User $user, warehouse $warehouse)
     {
         return $user->is_admin;
     }
@@ -63,10 +60,10 @@ class CustomerPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Customer  $customer
+     * @param  \App\warehouse  $warehouse
      * @return mixed
      */
-    public function delete(User $user, Customer $customer)
+    public function delete(User $user, warehouse $warehouse)
     {
         return $user->is_admin;
     }
@@ -75,10 +72,10 @@ class CustomerPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Customer  $customer
+     * @param  \App\warehouse  $warehouse
      * @return mixed
      */
-    public function restore(User $user, Customer $customer)
+    public function restore(User $user, warehouse $warehouse)
     {
         return $user->is_admin;
     }
@@ -87,10 +84,10 @@ class CustomerPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Customer  $customer
+     * @param  \App\warehouse  $warehouse
      * @return mixed
      */
-    public function forceDelete(User $user, Customer $customer)
+    public function forceDelete(User $user, warehouse $warehouse)
     {
         return $user->is_admin;
     }

@@ -105,7 +105,9 @@ class User extends Resource
                 return $request->user()->is_admin;
             }),
 
-            HasMany::make('Customers', 'customers', Customer::class),
+            HasMany::make('Customers', 'customers', Customer::class)->canSee(
+                fn() => $request->user()->is_admin or $request->user()->is_sales
+            ),
 
             Impersonate::make($this)->withMeta([
                 'redirect_to' => '/admin/resources/users'
@@ -165,6 +167,6 @@ class User extends Resource
      */
     public function title()
     {
-        return "$this->name ($this->email)";
+        return "$this->name ($this->jabatan)";
     }
 }
