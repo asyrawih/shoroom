@@ -98,6 +98,7 @@ class WareHouse extends Resource
 
             Date::make('Date Gi', 'date_gi')
                 ->hideWhenUpdating()
+                ->hideFromIndex()
                 ->rules(['required', 'date_format:Y-m-d']),
 
             HiddenField::make('Date Recv', 'date_recv')
@@ -105,6 +106,9 @@ class WareHouse extends Resource
                 ->hideFromIndex()
                 ->hideFromDetail()
                 ->hideWhenCreating(),
+
+            Date::make('Date', 'date_gi')
+                ->onlyOnIndex(),
 
             Date::make('Date Recv', 'date_recv')
                 ->onlyOnIndex(),
