@@ -36,14 +36,15 @@ class Proses extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $user = $request->user();
-
-        if ($user->is_admin) {
-            return $query;
-        }
-
-        return $query->where('user_id' , $user->id);
+        return $query;
     }
+
+    /**
+     * Indicates if the resource should be displayed in the sidebar.
+     *
+     * @var bool
+     */
+    public static $displayInNavigation = false;
 
     /**
      * Get the fields displayed by the resource.
@@ -56,13 +57,9 @@ class Proses extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Employee', 'employee', User::class),
-
-            BelongsTo::make('Unit', 'unit', Unit::class),
+            BelongsTo::make('Unit' , 'unit' , Unit::class),
 
             BelongsTo::make('Plant', 'plant', Plant::class),
-
-            BelongsTo::make('Customer', 'customer', Customer::class),
 
             Text::make('No Unit', 'no_unit')
                 ->rules('required', 'string'),

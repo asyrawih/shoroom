@@ -15,8 +15,6 @@ class CreateProsesTable extends Migration
     {
         Schema::create('proses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('customer_id');
             $table->foreignId('plant_id');
             $table->foreignId('unit_id');
             $table->string('no_unit');

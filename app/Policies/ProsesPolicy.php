@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Plant;
+use App\Proses;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PlantPolicy
+class ProsesPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class PlantPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Proses  $proses
      * @return mixed
      */
-    public function view(User $user, Plant $plant)
+    public function view(User $user, Proses $proses)
     {
         return $user->is_admin || $user->is_counter || $user->is_sales;
     }
@@ -48,10 +48,10 @@ class PlantPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Proses  $proses
      * @return mixed
      */
-    public function update(User $user, Plant $plant)
+    public function update(User $user, Proses $proses)
     {
         return $user->is_admin;
     }
@@ -60,10 +60,10 @@ class PlantPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Proses  $proses
      * @return mixed
      */
-    public function delete(User $user, Plant $plant)
+    public function delete(User $user, Proses $proses)
     {
         return $user->is_admin;
     }
@@ -72,10 +72,10 @@ class PlantPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Proses  $proses
      * @return mixed
      */
-    public function restore(User $user, Plant $plant)
+    public function restore(User $user, Proses $proses)
     {
         return $user->is_admin;
     }
@@ -84,10 +84,10 @@ class PlantPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Proses  $proses
      * @return mixed
      */
-    public function forceDelete(User $user, Plant $plant)
+    public function forceDelete(User $user, Proses $proses)
     {
         return $user->is_admin;
     }

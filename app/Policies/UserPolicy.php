@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Plant;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PlantPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +17,19 @@ class PlantPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->is_admin || $user->is_counter || $user->is_sales;
+        return $user->is_admin || $user->is_sales || $user->is_counter;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function view(User $user, Plant $plant)
+    public function view(User $user, User $model)
     {
-        return $user->is_admin || $user->is_counter || $user->is_sales;
+        return $user->id === $model->id or $user->is_admin;
     }
 
     /**
@@ -48,22 +47,22 @@ class PlantPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function update(User $user, Plant $plant)
+    public function update(User $user, User $model)
     {
-        return $user->is_admin;
+        return $user->id == $model->id or $user->is_admin;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function delete(User $user, Plant $plant)
+    public function delete(User $user, User $model)
     {
         return $user->is_admin;
     }
@@ -72,23 +71,23 @@ class PlantPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function restore(User $user, Plant $plant)
+    public function restore(User $user, User $model)
     {
-        return $user->is_admin;
+        return $user->id == $model->id or $user->is_admin;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function forceDelete(User $user, Plant $plant)
+    public function forceDelete(User $user, User $model)
     {
-        return $user->is_admin;
+        return $user->id == $model->id or $user->is_admin;
     }
 }

@@ -18,7 +18,7 @@ class UnitPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->is_admin || $user->is_sales or $user->is_warehose;
+        return $user->is_admin || $user->is_counter || $user->is_sales;
     }
 
     /**
@@ -30,7 +30,7 @@ class UnitPolicy
      */
     public function view(User $user, Unit $unit)
     {
-        return $user->is_sales or $user->is_warehose;
+        return $user->is_admin || $user->is_counter || $user->is_sales;
     }
 
     /**
@@ -53,7 +53,7 @@ class UnitPolicy
      */
     public function update(User $user, Unit $unit)
     {
-        return $user->is_admin or $user->is_sales;
+        return $user->is_admin;
     }
 
     /**

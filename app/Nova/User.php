@@ -72,6 +72,7 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             Text::make('SN EMPLOYEE')
+                ->hideFromIndex()
                 ->updateRules('required', 'string', 'unique:users,sn_employee,{{resourceId}}'),
 
             Password::make('Password')
@@ -80,9 +81,11 @@ class User extends Resource
                 ->updateRules('nullable', 'string', 'min:8'),
 
             Text::make('Phone Number', 'phone_number')
+                ->hideFromIndex()
                 ->rules('required', 'string'),
 
             Text::make('Jabatan', 'jabatan')
+                ->hideFromIndex()
                 ->rules('required', 'string'),
 
 
@@ -98,7 +101,9 @@ class User extends Resource
                 return $request->user()->is_admin;
             }),
 
-            HasMany::make('Proses', 'proses', Proses::class),
+            Boolean::make('Is Counter', 'is_counter')->canSee(function ($request) {
+                return $request->user()->is_admin;
+            }),
 
             HasMany::make('Customers', 'customers', Customer::class),
 
@@ -151,5 +156,15 @@ class User extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public function title()
+    {
+        return "$this->name ($this->email)";
     }
 }

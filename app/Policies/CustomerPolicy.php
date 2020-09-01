@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Plant;
+use App\Customer;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PlantPolicy
+class CustomerPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,21 @@ class PlantPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->is_admin || $user->is_counter || $user->is_sales;
+        return $user->is_admin || $user->is_sales || $user->is_counter;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Customer  $customer
      * @return mixed
      */
-    public function view(User $user, Plant $plant)
+    public function view(User $user, Customer $customer)
     {
-        return $user->is_admin || $user->is_counter || $user->is_sales;
+        return $user->id === $customer->user_id
+            or $user->is_admin
+            or $user->is_counter;
     }
 
     /**
@@ -48,10 +50,10 @@ class PlantPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Customer  $customer
      * @return mixed
      */
-    public function update(User $user, Plant $plant)
+    public function update(User $user, Customer $customer)
     {
         return $user->is_admin;
     }
@@ -60,10 +62,10 @@ class PlantPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Customer  $customer
      * @return mixed
      */
-    public function delete(User $user, Plant $plant)
+    public function delete(User $user, Customer $customer)
     {
         return $user->is_admin;
     }
@@ -72,10 +74,10 @@ class PlantPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Customer  $customer
      * @return mixed
      */
-    public function restore(User $user, Plant $plant)
+    public function restore(User $user, Customer $customer)
     {
         return $user->is_admin;
     }
@@ -84,10 +86,10 @@ class PlantPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Plant  $plant
+     * @param  \App\Customer  $customer
      * @return mixed
      */
-    public function forceDelete(User $user, Plant $plant)
+    public function forceDelete(User $user, Customer $customer)
     {
         return $user->is_admin;
     }

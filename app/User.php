@@ -39,17 +39,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * @author hanan
-     * 
-     * Satu customer bisa memiliki banyak proses
-     * @return HasMany
-     */
-    public function proses(): HasMany
-    {
-        return $this->hasMany(Proses::class, 'user_id');
-    }
-
-    /**
      * A Sales Can Have Many User 
      * @return HasMany
      */

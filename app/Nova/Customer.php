@@ -39,10 +39,10 @@ class Customer extends Resource
     {
         $user = $request->user();
 
-        if (!$user->is_admin) {
-            return $query->where('user_id', $user->id);
+        if ($user->is_admin or $user->is_counter) {
+            return $query;
         }
-        return $query;
+        return $query->where('user_id', $user->id);
     }
 
     /**
@@ -56,7 +56,8 @@ class Customer extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Sales', 'sales', User::class),
+            BelongsTo::make('Sales', 'sales', User::class)
+                ->searchable(),
 
             Text::make('SOLD TO PARTY')
                 ->onlyOnForms()
@@ -66,7 +67,7 @@ class Customer extends Resource
                 return $this->format_stp;
             }),
 
-            Text::make('SOLD TO PARTY', function () {
+            Text::make('SHIP TO ID', function () {
                 return $this->format_sti;
             }),
 
@@ -105,7 +106,7 @@ class Customer extends Resource
                 ->hideFromIndex()
                 ->rules('required', 'string'),
 
-            HasMany::make('Proses', 'proses', Proses::class),
+            HasMany::make('Units', 'units', Unit::class),
         ];
     }
 
@@ -151,5 +152,15 @@ class Customer extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public function title()
+    {
+        return "$this->name ($this->format_sti)";
     }
 }

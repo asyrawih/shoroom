@@ -15,6 +15,7 @@ class CreateUnitsTable extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('customer_id');
             $table->string('sn_unit')->unique();
             $table->string('model_unit');
             $table->text('desc');
