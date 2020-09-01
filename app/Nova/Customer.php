@@ -61,7 +61,11 @@ class Customer extends Resource
         return [
             ID::make()->sortable(),
 
+            Text::make('NAME')
+                ->rules('required', 'string'),
+
             BelongsTo::make('Sales', 'sales', User::class)
+                ->onlyOnForms()
                 ->searchable(),
 
             Text::make('SOLD TO PARTY')
@@ -79,9 +83,6 @@ class Customer extends Resource
             Text::make('SHIP TO ID')
                 ->onlyOnForms()
                 ->rules('required', 'string', 'unique:customers,ship_to_id,{{resourceId}}'),
-
-            Text::make('NAME')
-                ->rules('required', 'string'),
 
             Text::make('Phone Number')
                 ->hideFromIndex()
@@ -110,6 +111,7 @@ class Customer extends Resource
             Text::make('Npwp', 'npwp')
                 ->hideFromIndex()
                 ->rules('required', 'string'),
+
 
             HasMany::make('Units', 'units', Unit::class),
         ];
