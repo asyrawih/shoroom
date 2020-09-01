@@ -4,10 +4,11 @@
       <input
         class="bg-white focus:outline-none focus:shadow-outline border-4 border-secondary rounded-lg py-5 px-4 block w-full appearance-none leading-normal"
         type="email"
-        autofocus
         placeholder="Scan barcode di sini"
         @input="updateValue"
         @keyup.enter="handleEnter"
+        autofocus
+        id="input"
       />
     </div>
   </div>
@@ -34,6 +35,7 @@ export default {
 
     handleEnter(e) {
       this.$emit("enter", e.target.value);
+      e.target.value = ""
     },
   },
 };

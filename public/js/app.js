@@ -1932,8 +1932,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    handle: function handle(e) {},
-    getCustomer: function getCustomer(query) {}
+    handle: function handle(e) {
+      this.getCustomer(e);
+    },
+    getCustomer: function getCustomer(query) {
+      console.log(query);
+    }
   }
 });
 
@@ -1995,6 +1999,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "input-field",
   props: {
@@ -2012,6 +2017,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleEnter: function handleEnter(e) {
       this.$emit("enter", e.target.value);
+      e.target.value = "";
     }
   }
 });
@@ -19751,8 +19757,9 @@ var render = function() {
           "bg-white focus:outline-none focus:shadow-outline border-4 border-secondary rounded-lg py-5 px-4 block w-full appearance-none leading-normal",
         attrs: {
           type: "email",
+          placeholder: "Scan barcode di sini",
           autofocus: "",
-          placeholder: "Scan barcode di sini"
+          id: "input"
         },
         on: {
           input: _vm.updateValue,

@@ -23,8 +23,12 @@ export default {
   },
 
   methods: {
-    handle(e) {},
-    getCustomer(query) {},
+    handle(e) {
+      this.getCustomer(e)
+    },
+    getCustomer(query) {
+      console.log(query);
+    },
   },
 };
 </script>
