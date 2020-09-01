@@ -37,12 +37,20 @@ class Unit extends Resource
     ];
 
 
+    /**
+     * Indicates if the resource should be displayed in the sidebar.
+     *
+     * @var bool
+     */
+    public static $displayInNavigation = false;
+
+
     public static function indexQuery(NovaRequest $request, $query)
     {
-       if(!$request->user()->is_admin){
-           return $query->whereIn('customer_id' , $request->user()->customers->pluck('id'));
-       }
-       return $query;
+        if (!$request->user()->is_admin) {
+            return $query->whereIn('customer_id', $request->user()->customers->pluck('id'));
+        }
+        return $query;
     }
 
     /**
@@ -56,7 +64,9 @@ class Unit extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Customer' , 'customer' , Customer::class),
+            BelongsTo::make('Customer', 'customer', Customer::class)
+                ->showCreateRelationButton()
+                ->searchable(),
 
             Text::make('Serial Unit', 'sn_unit')
                 ->rules('required', 'string', 'unique:units,sn_unit,{{resourceID}}'),
@@ -67,7 +77,7 @@ class Unit extends Resource
             Textarea::make('Deskripisi', 'desc')
                 ->rules('required', 'string'),
 
-            HasMany::make('Prosess' , 'proses' , Proses::class),
+            HasMany::make('Prosess', 'proses', Proses::class),
 
         ];
     }

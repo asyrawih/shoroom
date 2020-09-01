@@ -56,7 +56,8 @@ class Customer extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Sales', 'sales', User::class),
+            BelongsTo::make('Sales', 'sales', User::class)
+                ->searchable(),
 
             Text::make('SOLD TO PARTY')
                 ->onlyOnForms()
@@ -151,5 +152,15 @@ class Customer extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public function title()
+    {
+        return "$this->name ($this->format_sti)";
     }
 }

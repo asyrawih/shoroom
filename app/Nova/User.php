@@ -157,4 +157,14 @@ class User extends Resource
     {
         return [];
     }
+
+    /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public function title()
+    {
+        return "$this->name ($this->email)";
+    }
 }
