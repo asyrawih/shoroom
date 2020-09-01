@@ -18,7 +18,7 @@ class UnitPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->is_admin || $user->is_counter || $user->is_sales;
+        return $user->is_admin  || $user->is_sales or $user->is_counter;
     }
 
     /**
@@ -30,7 +30,10 @@ class UnitPolicy
      */
     public function view(User $user, Unit $unit)
     {
-        return $user->is_admin || $user->is_counter || $user->is_sales;
+        return
+            $user->is_counter or
+            $user->is_sales or
+            $user->is_admin;
     }
 
     /**
