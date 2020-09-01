@@ -19,7 +19,7 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(User::class , 'counter' , ['is_counter' => true]);
+$factory->state(User::class , 'counter' , ['is_counter' => true , 'jabatan' => 'counter']);
 
 $factory->state(User::class , 'sales' , ['is_sales' => true , 'jabatan' => 'sales']);
 

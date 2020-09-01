@@ -20,7 +20,9 @@ class CreateWareHousesTable extends Migration
             $table->string('od');
             $table->string('so');
             $table->date('date_gi');
-            $table->string('cust_recv');
+            $table->date('date_recv')->nullable();
+            $table->string('cust_recv')->nullable();
+            $table->string('status')->default('Ready To Pickup');
             $table->timestamps();
         });
     }

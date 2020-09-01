@@ -14,6 +14,8 @@ $factory->define(WareHouse::class, function (Faker $faker) {
         'so'            => rand(2000,3000),
         'od'            => rand(2000,3000),
         'date_gi'       => $faker->date(),
+        'date_recv'     => $faker->date(),
         'cust_recv'     => $faker->firstName,
+        'status'        => $faker->randomElement(array_keys(WareHouse::$status)),
     ];
 });

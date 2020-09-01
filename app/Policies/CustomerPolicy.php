@@ -30,8 +30,7 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer)
     {
-        return $user->id === $customer->user_id
-            or $user->is_admin
+        return $user->is_admin
             or $user->is_counter
             or $user->is_warehose;
     }

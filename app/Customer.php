@@ -17,7 +17,7 @@ class Customer extends Model
      */
     public function getFormatStpAttribute(): string
     {
-        return 'STP-' . $this->sold_to_party;
+        return $this->sold_to_party;
     }
 
     /**
@@ -27,7 +27,7 @@ class Customer extends Model
      */
     public function getFormatStiAttribute(): string
     {
-        return 'STI-' . $this->ship_to_id;
+        return  $this->ship_to_id;
     }
 
     /**
@@ -56,6 +56,15 @@ class Customer extends Model
      */
     public function units()
     {
-        return $this->hasMany(Unit::class , 'customer_id');
+        return $this->hasMany(Unit::class, 'customer_id');
+    }
+
+    /**
+     * Customer Can hava Many stuff item on Warehouse
+     * 
+     */
+    public function warehouses(): HasMany
+    {
+        return $this->hasMany(WareHouse::class, 'customer_id');
     }
 }

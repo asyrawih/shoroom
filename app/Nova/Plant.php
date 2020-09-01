@@ -52,8 +52,6 @@ class Plant extends Resource
 
             Text::make('Deskripsi', 'desc')
                 ->rules('required', 'string'),
-
-            HasMany::make('Proses', 'proses', Proses::class),
         ];
     }
 
