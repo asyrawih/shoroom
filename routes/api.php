@@ -1,5 +1,7 @@
 <?php
 
+use App\Customer;
+use App\Http\Controllers\Api\Customers\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('customer')
+    ->name('customer.')
+    ->group(function () {
+        Route::get('/', [CustomerController::class, 'index'])->name('all');
+        Route::get('/{id}', [CustomerController::class, 'show'])->name('show');
+    });

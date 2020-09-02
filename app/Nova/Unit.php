@@ -57,6 +57,8 @@ class Unit extends Resource
                 ->showCreateRelationButton()
                 ->searchable(),
 
+            BelongsTo::make('Plants' , 'plant' , Plant::class),
+
             Text::make('Serial Unit', 'sn_unit')
                 ->hideWhenUpdating()
                 ->creationRules('required', 'string', 'unique:units,sn_unit,{{resourceID}}'),

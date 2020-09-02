@@ -2,10 +2,6 @@ module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
   },
-  purge: [
-    './resources/views/**/*.blade.php',
-    './resources/css/**/*.css',
-  ],
   theme: {
     extend: {
       colors: {
@@ -17,5 +13,5 @@ module.exports = {
   variants: {},
   plugins: [
     require('@tailwindcss/ui'),
-  ]
+  ],
 }

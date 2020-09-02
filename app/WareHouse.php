@@ -50,7 +50,6 @@ class WareHouse extends Model
         return $this->belongsTo(Customer::class, 'customer_id');
     }
 
-
     public function getSales()
     {
         return $this->customer->sales;

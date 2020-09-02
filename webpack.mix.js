@@ -24,4 +24,3 @@ if (mix.inProduction()) {
   mix
     .version();
 }
-mix.browserSync('showroom.test');

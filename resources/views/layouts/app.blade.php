@@ -37,11 +37,11 @@
                                     href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif --}}
                         @else
-                            <span class="text-gray-300 font-bold text-sm pr-4">{{ auth()->user()->name }}(
+                            <span class="font-bold text-secondary text-sm pr-4">{{ auth()->user()->name }}(
                                 {{ auth()->user()->jabatan }} )</span>
-                            <a href="{{ route('logout') }}" class="no-underline hover:underline text-gray-300 text-sm p-3"
+                            <a href="{{ route('logout') }}" class="no-underline hover:underline text-secondary text-sm p-3"
                                 onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                                 {{ csrf_field() }}
                             </form>
