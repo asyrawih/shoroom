@@ -2252,18 +2252,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      barcodeValue: "tes"
+      barcode: [{
+        id: 1,
+        sold_to_party: "123123123"
+      }, {
+        id: 2,
+        sold_to_party: "123123123"
+      }, {
+        id: 3,
+        sold_to_party: "123123123"
+      }]
     };
   },
   components: {
@@ -46235,41 +46237,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "input-field mx-2" }, [
-    _c(
-      "div",
-      { staticClass: "flex mx-3 flex-wrap" },
-      [
-        _c("input", {
-          directives: [
+  return _c(
+    "div",
+    { staticClass: "flex mx-3 flex-wrap" },
+    _vm._l(_vm.barcode, function(row) {
+      return _c(
+        "div",
+        { key: row.id, staticClass: "flex mt-3 mx-2" },
+        [
+          _c(
+            "barcode",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.barcodeValue,
-              expression: "barcodeValue"
-            }
-          ],
-          staticClass:
-            "bg-white focus:outline-none focus:shadow-outline border-4 border-secondary rounded-lg py-5 px-4 w-full appearance-none leading-normal",
-          attrs: { type: "email", placeholder: "barcode", id: "input" },
-          domProps: { value: _vm.barcodeValue },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+              attrs: {
+                value: row.sold_to_party,
+                height: "52",
+                background: "white"
               }
-              _vm.barcodeValue = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("barcode", { attrs: { value: _vm.barcodeValue } }, [
-          _c("span", { staticClass: "text-white" })
-        ])
-      ],
-      1
-    )
-  ])
+            },
+            [_c("span", { staticClass: "text-white" })]
+          )
+        ],
+        1
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

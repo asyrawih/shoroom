@@ -1,14 +1,7 @@
 <template>
-  <div class="input-field mx-2">
-    <div class="flex mx-3 flex-wrap">
-      <input
-        class="bg-white focus:outline-none focus:shadow-outline border-4 border-secondary rounded-lg py-5 px-4 w-full appearance-none leading-normal"
-        type="email"
-        placeholder="barcode"
-        id="input"
-        v-model="barcodeValue"
-      />
-      <barcode :value="barcodeValue">
+  <div class="flex mx-3 flex-wrap">
+    <div class="flex mt-3 mx-2" v-for="row in barcode" :key="row.id">
+      <barcode :value="row.sold_to_party" height="52" background="white">
         <span class="text-white"></span>
       </barcode>
     </div>
@@ -17,11 +10,23 @@
 
 <script>
 import VueBarcode from "vue-barcode";
-
 export default {
   data() {
     return {
-      barcodeValue: "tes",
+      barcode: [
+        {
+          id: 1,
+          sold_to_party: "123123123",
+        },
+        {
+          id: 2,
+          sold_to_party: "123123123",
+        },
+        {
+          id: 3,
+          sold_to_party: "123123123",
+        },
+      ],
     };
   },
   components: {
