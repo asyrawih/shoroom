@@ -86,6 +86,9 @@ class Unit extends Resource
             Text::make('SMU', 'smu')
                 ->rules('required', 'string'),
 
+            Text::make('OLD SMU', 'old_smu')
+                ->rules('required', 'string'),
+
             Text::make('Remark', 'remark')
                 ->hideFromIndex()
                 ->nullable(),

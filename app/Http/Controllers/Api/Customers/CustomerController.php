@@ -30,7 +30,22 @@ class CustomerController extends Controller
         if (count($customer) > 0) {
             return $customer;
         }
-       
-        return response()->json(['message' => 'data tidak di temukan']);
+
+        return response()->json(['message' => 'Data tidak di temukan']);
+    }
+    public function search($id)
+    {
+        $customer = Customer::with(['sales', 'warehouses', 'units'])
+            ->where('sold_to_party', $id)
+            ->get();
+
+        if(count($customer) == 0){
+            return response()->json([
+                'messages' => 'Data tidak di temukan'
+            ],404);
+        }
+
+        return CustomerResource::collection($customer);
+
     }
 }

@@ -25,4 +25,5 @@ Route::prefix('customer')
     ->group(function () {
         Route::get('/', [CustomerController::class, 'index'])->name('all');
         Route::get('/{id}', [CustomerController::class, 'show'])->name('show');
+        Route::get('/search/{id}', [CustomerController::class, 'search'])->name('search');
     });
