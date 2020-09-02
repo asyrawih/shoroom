@@ -23,6 +23,7 @@
         "laravel/framework": "^7.24",
         "laravel/nova": "*",
         "laravel/tinker": "^2.0",
+        "milon/barcode": "^7.0",
         "outhebox/nova-hidden-field": "^1.0",
         "titasgailius/search-relations": "^1.0"
     },
