@@ -1,7 +1,10 @@
 <?php
 
+use App\Customer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Milon\Barcode\DNS1D;
+use Milon\Barcode\DNS2D;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +24,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::fallback(function () {
+    return view('welcome');
+});

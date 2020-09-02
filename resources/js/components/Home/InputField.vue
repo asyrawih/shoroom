@@ -4,7 +4,7 @@
       <input
         class="bg-white focus:outline-none focus:shadow-outline border-4 border-secondary rounded-lg py-5 px-4 w-full appearance-none leading-normal"
         type="email"
-        placeholder="Scan barcode di sini"
+        placeholder="Scan barcode di sini || tekan Tombol Esc untuk Mereset"
         @input="updateValue"
         @keyup.enter="handleEnter"
         @keydown.esc="handleEsc"
