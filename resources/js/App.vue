@@ -44,7 +44,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["customers" , 'error']),
+    ...mapState(["customers", "error"]),
   },
 
   data() {
@@ -52,7 +52,6 @@ export default {
       value: "",
     };
   },
-
   methods: {
     handle(barcode) {
       this.getCustomer(barcode);

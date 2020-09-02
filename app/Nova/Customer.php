@@ -69,12 +69,12 @@ class Customer extends Resource
             Text::make('SHIP TO ID', 'ship_to_id', function () {
                 return $this->format_sti;
             })
-                ->onlyOnIndex(),
+                ->exceptOnForms(),
 
-            Text::make('SOLD TO PARY', 'sold_to_party', function () {
+            Text::make('SOLD TO PARTY', 'sold_to_party', function () {
                 return $this->format_stp;
             })
-                ->onlyOnIndex(),
+                ->exceptOnForms(),
 
             Text::make('SOLD TO PARTY')
                 ->onlyOnForms()

@@ -23,6 +23,7 @@ export default new Vuex.Store({
         },
         ERROR: (state, error) => {
             state.error.message = error
+            Vue.$toast.error(state.error.message)
         }
     },
     // Commit At Action
@@ -36,21 +37,17 @@ export default new Vuex.Store({
             state.isLoading = true
             commit('ADD_CUSTOMER', customer)
         },
-
         //Scan the barcode And Get data
         scanBarcode({ commit, state }, barcode) {
-            state.isLoading = true
-            Axios.get('/api/customer/' + barcode)
-                .then(({ data }) => {
-                    if (data.message) {
-                        commit('ERROR', data.message)
+            Axios.get('api/customer/search/' + barcode)
+                .then(res => {
+                    if(res.status == 200){
+                        Vue.$toast.success('Data Berhasil Di Dapatkan')
                     }
-                    if(data[0] == undefined) {
-                        return 
-                    }
-                    commit('ADD_CUSTOMER', data[0])
-                })
-            state.isLoading = false
+                    commit('ADD_CUSTOMER' , res.data.data[0])
+                }).catch((e) => {
+                    Vue.$toast.error(e.response.data.messages)
+                });
         }
 
     },

@@ -25,7 +25,8 @@ class CreateUnitsTable extends Migration
             $table->string('kota');
             $table->string('hoo');
             $table->string('smu');
-            $table->text('remark')->nullable(); 
+            $table->string('old_smu')->nullable();
+            $table->text('remark')->nullable();
             $table->timestamps();
         });
     }

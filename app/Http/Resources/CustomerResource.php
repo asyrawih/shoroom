@@ -25,7 +25,10 @@ class CustomerResource extends JsonResource
             'virtual_account' => $this->virtual_account,
             'info_scc'        => $this->info_scc,
             'npwp'            => $this->npwp,
-            'sales'           => UserResource::make($this->sales)
+            'alamat'          => $this->address,
+            'sales'           => UserResource::make($this->sales),
+            'units'           => UnitResource::collection($this->units),
+            'warehouses'      => WarehouseResource::collection($this->warehouses), 
         ];
     }
 }

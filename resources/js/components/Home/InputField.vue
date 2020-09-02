@@ -10,7 +10,6 @@
         @keydown.esc="handleEsc"
         id="input"
         autofocus
-        :class="{ 'invisible' : isDisable}"
       />
     </div>
   </div>
@@ -29,7 +28,6 @@ export default {
   data() {
     return {
       content: this.value,
-      isDisable: false,
     };
   },
 
@@ -40,12 +38,8 @@ export default {
     },
 
     handleEnter(e) {
-      this.isDisable = true;
       this.$emit("enter", e.target.value);
       e.target.value = "";
-      setTimeout(() => {
-        this.isDisable = false;
-      }, 100);
     },
     handleEsc(e) {
       this.$store.dispatch('resetScaner' , [])
