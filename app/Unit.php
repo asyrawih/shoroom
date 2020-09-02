@@ -22,4 +22,8 @@ class Unit extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
+
+    public function plant() {
+        return $this->belongsTo(Plant::class , 'plant_id');
+    }
 }

@@ -71,8 +71,8 @@ class WareHouse extends Resource
                 ->searchable(),
 
             Text::make('Sales', function () {
-                return $this->customer->sales->name;
-            }),
+                return $this->customer->sales->name ?? '-';
+            })->onlyOnIndex(),
 
             Text::make('SO')
                 ->rules('required', 'numeric'),
