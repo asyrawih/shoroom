@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Unit extends Model
 {
+    /**
+     * Allow To Mass Assigment
+     * @var array
+     */
+    protected $fillable = [
+        'smu', 'old_smu','hoo'
+    ];
 
     /**
      * @author hanan

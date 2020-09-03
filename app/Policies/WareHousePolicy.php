@@ -18,7 +18,7 @@ class WareHousePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->is_admin or $user->is_warehose || $user->is_counter;
+        return $user->is_admin or $user->is_warehose || $user->is_counter || $user->is_sales;
     }
 
     /**

@@ -32,7 +32,8 @@ class CustomerPolicy
     {
         return $user->is_admin
             or $user->is_counter
-            or $user->is_warehose;
+            or $user->is_warehose
+            or $user->is_sales;
     }
 
     /**
