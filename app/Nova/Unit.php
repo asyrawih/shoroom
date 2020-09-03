@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\UpdatePMAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Kristories\Qrcode\Qrcode;
@@ -81,7 +82,6 @@ class Unit extends Resource
                 ->rules('required', 'string'),
 
             Text::make('HOO', 'hoo')
-                ->hideFromIndex()
                 ->rules('required', 'string'),
 
             Text::make('SMU', 'smu')
@@ -96,6 +96,7 @@ class Unit extends Resource
 
             Qrcode::make('Serial Number')
                 ->text($this->serial_number)
+                ->onlyOnIndex(),
         ];
     }
 
@@ -140,6 +141,10 @@ class Unit extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            (new UpdatePMAction())->canRun(function($request){
+                return $request->user()->is_counter || $request->user()->is_admin;
+            }),
+        ];
     }
 }

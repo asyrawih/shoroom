@@ -46,6 +46,19 @@ class WareHouse extends Resource
         'customer' => ['ship_to_id'],
     ];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+
+        if($user->is_sales){
+            return $query->whereHas('customer.sales' , function($sales) use ($user){
+                $sales->where('id' , $user->id);
+            });
+        }
+
+        return $query;
+    }
+
     /**
      * Query Specifik relatable
      * 
