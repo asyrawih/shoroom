@@ -3,11 +3,13 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Kristories\Qrcode\Qrcode;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+
 
 class Customer extends Resource
 {
@@ -112,6 +114,11 @@ class Customer extends Resource
                 ->hideFromIndex()
                 ->rules('required', 'string'),
 
+            Qrcode::make('QR SOLD TO PARTY')
+                ->text($this->format_stp),
+
+            Qrcode::make('QR SHIP TO ID')
+                ->text($this->format_sti),
 
             HasMany::make('Units', 'units', Unit::class),
 
@@ -160,7 +167,9 @@ class Customer extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadExcel(),
+        ];
     }
 
     /**

@@ -39,9 +39,6 @@
                         @else
                             <span class="font-bold text-secondary text-sm pr-4">{{ auth()->user()->name }}(
                                 {{ auth()->user()->jabatan }} )</span>
-                            <router-link :to="{name : 'barcode'}">
-                                <span class="font-bold text-secondary text-sm pr-4">Barcode</span>
-                            </router-link>
                             <a href="{{ route('logout') }}" class="no-underline hover:underline text-secondary text-sm p-3"
                                 onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>

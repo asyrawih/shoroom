@@ -28,26 +28,26 @@
 <script>
 export default {
   name: "customer-unit",
-  props : {
-    units : {
-      type : Array
-    }
+  props: {
+    units: {
+      type: Array,
+    },
   },
   data() {
     return {};
   },
-  filters : {
-    smuCheckRate(smu , old_smu){
-      if(smu > (old_smu * 6) ) {
-        console.log(smu);
-        return `${old_smu * 6} | Harus Di CheckUp`
-      }else {
-        return `${smu}`
+  filters: {
+    smuCheckRate(smu, old_smu) {
+      if (smu >= parseInt(old_smu) + parseInt(250)) { // SMU <= SMU yang kmrin
+        return `Sudah Mendekati Jadwal \n PM`;
+      } else {
+        return `${smu}`;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
+
 </style>

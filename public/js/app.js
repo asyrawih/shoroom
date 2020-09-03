@@ -2080,9 +2080,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   filters: {
     smuCheckRate: function smuCheckRate(smu, old_smu) {
-      if (smu > old_smu * 6) {
-        console.log(smu);
-        return "".concat(old_smu * 6, " | Harus Di CheckUp");
+      if (smu >= parseInt(old_smu) + parseInt(250)) {
+        // SMU <= SMU yang kmrin
+        return "Sudah Mendekati Jadwal \n PM";
       } else {
         return "".concat(smu);
       }

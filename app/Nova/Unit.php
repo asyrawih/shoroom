@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Kristories\Qrcode\Qrcode;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -92,6 +93,9 @@ class Unit extends Resource
             Text::make('Remark', 'remark')
                 ->hideFromIndex()
                 ->nullable(),
+
+            Qrcode::make('Serial Number')
+                ->text($this->serial_number)
         ];
     }
 
