@@ -2,16 +2,15 @@
 
 namespace App\Nova;
 
-use App\WareHouse as AppWareHouse;
+use App\Nova\Filters\ReadyFilter;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\Hidden;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Outhebox\NovaHiddenField\HiddenField;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class WareHouse extends Resource
 {
@@ -134,7 +133,9 @@ class WareHouse extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            (new ReadyFilter()),
+        ];
     }
 
     /**
@@ -156,7 +157,9 @@ class WareHouse extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadExcel(),
+        ];
     }
 
     public static function label()

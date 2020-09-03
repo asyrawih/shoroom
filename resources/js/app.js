@@ -2,7 +2,7 @@
 import store from "./store"
 import VueToast from 'vue-toast-notification';
 import Vue from 'vue';
-
+import route from './router'
 // Import one of available themes
 import 'vue-toast-notification/dist/theme-default.css';
 
@@ -11,10 +11,8 @@ window.Vue = Vue;
 
 Vue.use(VueToast);
 
-
-Vue.component('App', require('./App.vue').default);
-
 const app = new Vue({
     el: '#app',
-    store: store
+    store: store,
+    router : route
 });

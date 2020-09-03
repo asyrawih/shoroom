@@ -15,7 +15,7 @@ class Customer extends Model
      * @return string
      * @author Hanan
      */
-    public function getFormatStpAttribute(): string
+    public function getFormatStpAttribute()
     {
         return $this->sold_to_party;
     }
@@ -25,7 +25,7 @@ class Customer extends Model
      * @return string 
      * @author hanan
      */
-    public function getFormatStiAttribute(): string
+    public function getFormatStiAttribute()
     {
         return  $this->ship_to_id;
     }
