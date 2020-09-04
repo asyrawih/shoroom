@@ -71,12 +71,12 @@ class Customer extends Resource
             Text::make('SHIP TO ID', 'ship_to_id', function () {
                 return $this->format_sti;
             })
-                ->exceptOnForms(),
+                ->onlyOnIndex(),
 
             Text::make('SOLD TO PARTY', 'sold_to_party', function () {
                 return $this->format_stp;
             })
-                ->exceptOnForms(),
+                ->onlyOnIndex(),
 
             Text::make('SOLD TO PARTY')
                 ->onlyOnForms()
@@ -115,9 +115,11 @@ class Customer extends Resource
                 ->rules('required', 'string'),
 
             Qrcode::make('QR SOLD TO PARTY')
+                ->exceptOnForms()
                 ->text($this->format_stp),
 
             Qrcode::make('QR SHIP TO ID')
+                ->exceptOnForms()
                 ->text($this->format_sti),
 
             HasMany::make('Units', 'units', Unit::class),
