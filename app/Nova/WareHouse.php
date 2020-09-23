@@ -34,7 +34,7 @@ class WareHouse extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'so', 'date_gi'
+        'id', 'so', 'date_gi','od'
     ];
 
     /**
