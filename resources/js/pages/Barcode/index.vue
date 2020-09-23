@@ -11,7 +11,7 @@
         </div>
         <div class="flex absolute bottom-24 right-4">
           <qrcode class="mx-2" :value="row.sold_to_party" tag="img" style="height: 50px;" />
-          <qrcode class="mx-2" :value="row.sold_to_party" tag="img" style="height: 50px;" />
+          <qrcode class="mx-2" :value="row.ship_to_id" tag="img" style="height: 50px;" />
         </div>
       </div>
     </div>

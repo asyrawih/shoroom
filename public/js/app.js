@@ -52969,7 +52969,7 @@ var render = function() {
                   _c("qrcode", {
                     staticClass: "mx-2",
                     staticStyle: { height: "50px" },
-                    attrs: { value: row.sold_to_party, tag: "img" }
+                    attrs: { value: row.ship_to_id, tag: "img" }
                   })
                 ],
                 1
