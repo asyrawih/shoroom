@@ -46015,7 +46015,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "border px-4 py-2" }, [
-                _vm._v(_vm._s(_vm._f("smuCheckRate")(row.smu, row.old_smu)))
+                _vm._v(_vm._s(row.smu))
               ])
             ])
           }),

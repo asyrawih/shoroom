@@ -17,7 +17,7 @@
             <td class="border px-4 py-2">{{row.desc}}</td>
             <td class="border px-4 py-2">{{row.no_unit}}</td>
             <td class="border px-4 py-2">{{row.kota}}</td>
-            <td class="border px-4 py-2">{{row.smu , row.old_smu |smuCheckRate }}</td>
+            <td class="border px-4 py-2">{{row.smu}}</td>
           </tr>
         </tbody>
       </table>
