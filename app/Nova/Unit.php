@@ -96,7 +96,7 @@ class Unit extends Resource
 
             Qrcode::make('Serial Number')
                 ->text($this->serial_number)
-                ->onlyOnIndex(),
+                ->exceptOnForms(),
         ];
     }
 
