@@ -46117,7 +46117,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", { staticClass: "w-1/3 px-4 py-2" }, [_vm._v("SO")]),
       _vm._v(" "),
-      _c("th", { staticClass: "w-1/5 px-4 py-2" }, [_vm._v("Date GI")])
+      _c("th", { staticClass: "w-1/5 px-4 py-2" }, [_vm._v("Date Receive")])
     ])
   }
 ]
@@ -63633,8 +63633,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/luck_nut/projects/web/showroom/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/luck_nut/projects/web/showroom/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/luck_nut/projects/web/shoroom/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/luck_nut/projects/web/shoroom/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

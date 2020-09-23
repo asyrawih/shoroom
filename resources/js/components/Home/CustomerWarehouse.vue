@@ -7,7 +7,7 @@
           <th class="w-1/2 px-4 py-2">Customer Recv</th>
           <th class="w-24 px-4 py-2">OD</th>
           <th class="w-1/3 px-4 py-2">SO</th>
-          <th class="w-1/5 px-4 py-2">Date GI</th>
+          <th class="w-1/5 px-4 py-2">Date Receive</th>
         </thead>
         <tbody class="text-secondary font-bold">
           <tr v-for="row in warehouse" :key="row.id">
