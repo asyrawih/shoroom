@@ -27,11 +27,12 @@
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
         "tailwindcss": "^1.4",
-        "vue": "^2.5.17",
+        "vue": "^2.6.12",
         "vue-router": "^3.4.3",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@chenfengyuan/vue-qrcode": "^1.0.2",
         "jsbarcode": "^3.11.0",
         "moment": "^2.27.0",
         "vue-barcode": "^1.2.0",

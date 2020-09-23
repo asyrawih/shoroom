@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Vuex from "vuex";
 import Axios from 'axios';
 
+import customer from './barcode'
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -41,14 +43,16 @@ export default new Vuex.Store({
         scanBarcode({ commit, state }, barcode) {
             Axios.get('api/customer/search/' + barcode)
                 .then(res => {
-                    if(res.status == 200){
+                    if (res.status == 200) {
                         Vue.$toast.success('Data Berhasil Di Dapatkan')
                     }
-                    commit('ADD_CUSTOMER' , res.data.data[0])
+                    commit('ADD_CUSTOMER', res.data.data[0])
                 }).catch((e) => {
                     Vue.$toast.error(e.response.data.messages)
                 });
         }
-
     },
+    modules: {
+        customer
+    }
 })
