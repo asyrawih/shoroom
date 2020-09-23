@@ -34,7 +34,7 @@ class WareHouse extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'so', 'date_gi','od'
+        'id', 'so', 'date_gi', 'od'
     ];
 
     /**
@@ -50,9 +50,9 @@ class WareHouse extends Resource
     {
         $user = $request->user();
 
-        if($user->is_sales){
-            return $query->whereHas('customer.sales' , function($sales) use ($user){
-                $sales->where('id' , $user->id);
+        if ($user->is_sales) {
+            return $query->whereHas('customer.sales', function ($sales) use ($user) {
+                $sales->where('id', $user->id);
             });
         }
 
@@ -171,7 +171,8 @@ class WareHouse extends Resource
     public function actions(Request $request)
     {
         return [
-            new DownloadExcel(),
+            (new DownloadExcel())
+                ->withHeadings(),
         ];
     }
 
