@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class WareHouse extends Model
 {
 
+
+    protected $fillable = ['status', 'date_recv', 'cust_recv'];
+
     protected $casts = [
         'date_gi'   => 'date',
         'date_recv' => 'date',

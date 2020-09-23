@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\UpdateWareHouseToTaken;
 use App\Nova\Filters\ReadyFilter;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -173,6 +174,8 @@ class WareHouse extends Resource
         return [
             (new DownloadExcel())
                 ->withHeadings(),
+                
+            (new UpdateWareHouseToTaken()),
         ];
     }
 
