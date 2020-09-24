@@ -5,24 +5,24 @@
       <div class="relative text-center" id="card" v-for="row in handle" :key="row.id">
         <img src="../../../assets/card.png" class="w-full h-auto rounded object-fill" />
         <div class="flex flex-col absolute top-20 bg-fixed left-6 text-sm">
-           <div class="flex">
-              <span>Nama</span>
+           <div class="flex mb-1">
+              <span class="font-extrabold">Nama</span>
               <span class="ml-11">{{row.name}}</span>
            </div>
-           <div class="flex">
-              <span>Sales</span>
+           <div class="flex mb-1">
+              <span class="font-extrabold">Sales</span>
               <span class="ml-12">{{row.sales.name}}</span>
            </div>
-           <div class="flex">
-              <span>Tlp Sales</span>
+           <div class="flex mb-1">
+              <span class="font-extrabold">Tlp Sales</span>
               <span class="ml-6">{{row.sales.phone_number}}</span>
            </div>
-           <div class="flex">
-              <span>VCC</span>
+           <div class="flex mb-1">
+              <span class="font-extrabold">VCC</span>
               <span class="ml-14">{{row.virtual_account}}</span>
            </div>
-           <div class="flex">
-              <span>Info SCC</span>
+           <div class="flex mb-1">
+              <span class="font-extrabold" >Info SCC</span>
               <span class="ml-7">1500228</span>
            </div>
         </div>

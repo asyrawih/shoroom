@@ -51974,32 +51974,40 @@ var render = function() {
                     "flex flex-col absolute top-20 bg-fixed left-6 text-sm"
                 },
                 [
-                  _c("div", { staticClass: "flex" }, [
-                    _c("span", [_vm._v("Nama")]),
+                  _c("div", { staticClass: "flex mb-1" }, [
+                    _c("span", { staticClass: "font-extrabold" }, [
+                      _vm._v("Nama")
+                    ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "ml-11" }, [
                       _vm._v(_vm._s(row.name))
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "flex" }, [
-                    _c("span", [_vm._v("Sales")]),
+                  _c("div", { staticClass: "flex mb-1" }, [
+                    _c("span", { staticClass: "font-extrabold" }, [
+                      _vm._v("Sales")
+                    ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "ml-12" }, [
                       _vm._v(_vm._s(row.sales.name))
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "flex" }, [
-                    _c("span", [_vm._v("Tlp Sales")]),
+                  _c("div", { staticClass: "flex mb-1" }, [
+                    _c("span", { staticClass: "font-extrabold" }, [
+                      _vm._v("Tlp Sales")
+                    ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "ml-6" }, [
                       _vm._v(_vm._s(row.sales.phone_number))
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "flex" }, [
-                    _c("span", [_vm._v("VCC")]),
+                  _c("div", { staticClass: "flex mb-1" }, [
+                    _c("span", { staticClass: "font-extrabold" }, [
+                      _vm._v("VCC")
+                    ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "ml-14" }, [
                       _vm._v(_vm._s(row.virtual_account))
@@ -52044,8 +52052,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex" }, [
-      _c("span", [_vm._v("Info SCC")]),
+    return _c("div", { staticClass: "flex mb-1" }, [
+      _c("span", { staticClass: "font-extrabold" }, [_vm._v("Info SCC")]),
       _vm._v(" "),
       _c("span", { staticClass: "ml-7" }, [_vm._v("1500228")])
     ])
