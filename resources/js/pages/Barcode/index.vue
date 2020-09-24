@@ -4,14 +4,34 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1 gap-3">
       <div class="relative text-center" id="card" v-for="row in handle" :key="row.id">
         <img src="../../../assets/card.png" class="w-full h-auto rounded object-fill" />
-        <div class="flex flex-col absolute top-20 bg-fixed left-6">
-          <span class="mb-3 text-left">Name {{ row.name }}</span>
-          <span class="mb-3 text-left">Sales {{ row.sales.name }}</span>
-          <span class="mb-3 text-left">Virtual Accout {{ row.virtual_account }}</span>
+        <div class="flex flex-col absolute top-20 bg-fixed left-6 text-sm">
+           <div class="flex">
+              <span>Nama</span>
+              <span class="ml-11">{{row.name}}</span>
+           </div>
+           <div class="flex">
+              <span>Sales</span>
+              <span class="ml-12">{{row.sales.name}}</span>
+           </div>
+           <div class="flex">
+              <span>Tlp Sales</span>
+              <span class="ml-6">{{row.sales.phone_number}}</span>
+           </div>
+           <div class="flex">
+              <span>VCC</span>
+              <span class="ml-14">{{row.virtual_account}}</span>
+           </div>
+           <div class="flex">
+              <span>Info SCC</span>
+              <span class="ml-7">1500228</span>
+           </div>
         </div>
         <div class="flex absolute bottom-24 right-4">
           <qrcode class="mx-2" :value="row.sold_to_party" tag="img" style="height: 50px;" />
           <qrcode class="mx-2" :value="row.ship_to_id" tag="img" style="height: 50px;" />
+        </div>
+        <div class="flex absolute bottom-10 right-2">
+          <span class="font-bold">www.trakindo.co.id</span>
         </div>
       </div>
     </div>
