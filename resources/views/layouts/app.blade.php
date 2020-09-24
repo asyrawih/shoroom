@@ -39,9 +39,14 @@
                         @else
                             <span class="font-bold text-secondary text-sm pr-4">{{ auth()->user()->name }}(
                                 {{ auth()->user()->jabatan }} )</span>
+
+                            <span class="font-bold text-secondary text-sm pr-4">
+                                <a href="#/barcode">Barcode</a>
+                            </span>
+                            
                             <a href="{{ route('logout') }}" class="no-underline hover:underline text-secondary text-sm p-3"
                                 onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                                 {{ csrf_field() }}
                             </form>

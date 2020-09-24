@@ -21,7 +21,6 @@
 import VueBarcode from "vue-barcode";
 import QrCode from "@chenfengyuan/vue-qrcode";
 import InputField from "../../components/shared/Input";
-import printJS from "print-js";
 import { mapActions, mapState } from "vuex";
 export default {
   data() {
@@ -64,7 +63,7 @@ export default {
 </script>
 
 <style>
-@media print {
+@media print { 
   button {
     display: none;
   }

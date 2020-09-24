@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import Home from './pages/Home/index.vue';
 import BarcodePages from "./pages/Barcode/index.vue"
 const router = new VueRouter({
+    mode : history, 
     routes: [
         {
             path: '/',
