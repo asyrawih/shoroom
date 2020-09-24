@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\ExportCustomer;
 use Illuminate\Http\Request;
 use Kristories\Qrcode\Qrcode;
 use Laravel\Nova\Fields\BelongsTo;
@@ -170,7 +171,8 @@ class Customer extends Resource
     public function actions(Request $request)
     {
         return [
-            new DownloadExcel(),
+            (new ExportCustomer())
+                ->withHeadings()
         ];
     }
 

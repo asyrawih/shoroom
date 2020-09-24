@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\ExportWareHouse;
 use App\Nova\Actions\UpdateWareHouseToTaken;
 use App\Nova\Filters\ReadyFilter;
 use Illuminate\Http\Request;
@@ -172,7 +173,7 @@ class WareHouse extends Resource
     public function actions(Request $request)
     {
         return [
-            (new DownloadExcel())
+            (new ExportWareHouse())
                 ->withHeadings(),
                 
             (new UpdateWareHouseToTaken()),
